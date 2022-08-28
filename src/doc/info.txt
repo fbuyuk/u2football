@@ -1,0 +1,85 @@
+#Arayüzleri U.GG den bakacağız#
+#Goleyden kart sistemine ve işleyişe bakılacak#
+#Oyun içinde seviye atlama olacak seviye atlama geldiğinde seçilen bir futbolcunun bir yeteneğini boostlayacak#
+
+5 farklı kategoride futbolcu olacak
+3 tane kabiliyet sayfası olacak hucum,defans,işlevsel 30 tane puan olacak bu puanları kabiliyet ağacında istedikleri gibi kullanacaklar
+
+saha rengi #588f58
+
+#BİRİMLER#
+
+Teknik Direktör Puanı(Her saat 1 puan gelir maximum 200)
+Bütçe
+Taraftarlar
+Takım Gücü
+
+#ANA BAŞIKLAR#
+-Başlangıç
+-Menajer
+    Transfer Borsası
+    Oyuncu Arama
+    Sponsorlar
+    Bilanço
+    Takım Görüntüsü
+    Başarılar
+-Teknik Direktör
+    Taktik
+    Casusluk
+    Takım Antrenmanı
+        Isınma
+        Antrenman Maçı
+        Masajİkili Mücadele
+        Penaltı
+        Kros ÇalışmasıKondisyon Çalışması
+        Kafa Topu
+        Defans Çalışması
+        Uzun Paslar
+    Bireysel Antrenman
+    Takım Detayları
+        Oyuncu Detay
+
+-Stadyum
+-Arkadaşlar
+-Olaylar
+-Fikstür
+-Puan Tablosu
+
+#OYUNCU PARAMETRELERİ#
+Oynadığı Pozisyon
+Maks Güç: Kale,Defans,Orta Saha,Forvet
+Koşu
+Refleksler
+Top Kontrolü
+Tecrübe
+Paslaşma
+Motivasyon
+Gol yollarında etkinlik
+İkili Mücadele
+Kondisyon
+Durum:Sağlıklı/Sakat/Cezalı
+Antrenman Puanı:(Oyuncu antrenman yaptıkça azalır) Her saat 2 anrenman puanı alınır
+Sağlık: 100%
+Yaş:20
+
+---------------
+Sarı Kartlar (5 sarı kart bir kaç maç ceza)
+Sarıdan Kırmızı Kartlar
+Kırmızı Kartlar
+Goller
+Maaş
+Popülarite
+Durum:sağlıklı
+
+
+
+#BİREYSEL ANTRENMAN#
+Bire bir görüşme
+Strateji
+Defans Eğitimi
+Hucum Eğitimi
+Kros Çalışması
+Kaleci Eğitimi
+Masaj(Antrenman Puanını Arttırır)
+Hasta Ziyareti
+Koşu Çalışması
