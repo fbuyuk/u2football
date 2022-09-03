@@ -18,15 +18,19 @@ export default function Anasayfa({ navigation }) {
           <Text style={styles.headTitle}>MENAJER</Text>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.menuButton}>
+          {/* <TouchableOpacity style={styles.menuButton}>
             <AntDesign name="linechart" size={24} color="#003740" />
             <Text style={styles.menuButtonTitle}>TRANSFER</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <TouchableOpacity
             style={styles.menuButton}
             onPress={() => navigation.navigate("OyuncuBul")}
           >
-            <AntDesign name="staro" size={24} color="#003740" />
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/23.png")}
+            />
             <Text style={styles.menuButtonTitle}>OYUNCU BUL</Text>
           </TouchableOpacity>
         </View>
@@ -34,16 +38,27 @@ export default function Anasayfa({ navigation }) {
           <Text style={styles.headTitle}>TEKNİK DİREKTÖR</Text>
         </View>
         <View style={styles.row}>
-          <TouchableOpacity style={styles.menuButton}>
-            <AntDesign name="linechart" size={24} color="#003740" />
+          <TouchableOpacity
+            style={styles.menuButton}
+            onPress={() => navigation.navigate("Taktik")}
+          >
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/21.png")}
+            />
             <Text style={styles.menuButtonTitle}>TAKTİK</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.menuButton}
             onPress={() => navigation.navigate("Oyuncular")}
           >
-            <AntDesign name="linechart" size={24} color="#003740" />
-            <Text style={styles.menuButtonTitle}>TAKIM DETAY</Text>
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/22.png")}
+            />
+            <Text style={styles.menuButtonTitle}>TAKIM</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.row}>
@@ -51,21 +66,33 @@ export default function Anasayfa({ navigation }) {
             style={styles.menuButton}
             onPress={() => navigation.navigate("Antrenman", { playerId: null })}
           >
-            <AntDesign name="linechart" size={24} color="#003740" />
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/20.png")}
+            />
             <Text style={styles.menuButtonTitle}>BİREYSEL ANTRENMAN</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.head}>
-          <Text style={styles.headTitle}>DİĞER</Text>
-        </View>
         <View style={styles.row}>
           <TouchableOpacity style={styles.menuButton}>
-            <AntDesign name="linechart" size={24} color="#003740" />
-            <Text style={styles.menuButtonTitle}>FİKSTÜR</Text>
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/9.png")}
+            />
+            <Text style={styles.menuButtonTitle}>Hazırlık Maçı</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.menuButton}>
-            <AntDesign name="linechart" size={24} color="#003740" />
-            <Text style={styles.menuButtonTitle}>P.DURUMU</Text>
+          <TouchableOpacity
+            style={styles.menuButton}
+            onPress={() => navigation.navigate("Gecmis")}
+          >
+            <Image
+              resizeMode={"contain"}
+              style={{ width: 80, height: 80 }}
+              source={require("../../../assets/images/icons/3.png")}
+            />
+            <Text style={styles.menuButtonTitle}>Maç Geçmişi</Text>
           </TouchableOpacity>
         </View>
       </View>

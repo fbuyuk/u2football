@@ -16,11 +16,14 @@ import Takim from "../screens/Takim";
 import OyuncuBul from "../screens/OyuncuBul";
 import OyuncuDetay from "../screens/OyuncuDetay";
 import Oyuncular from "../screens/Takim/Oyuncular";
+import Gecmis from "../screens/Gecmis";
 import Kayit from "../screens/Kayit";
 import { navigationRef } from "./RootNavigation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { useAuth } from "../contexts/AuthContext";
+import Taktik from "../screens/Taktik";
+
 export default function Navigation({ colorScheme }) {
   return (
     <NavigationContainer
@@ -88,7 +91,9 @@ function RootNavigator() {
       <Stack.Screen name="Antrenman" component={Antrenman} />
       <Stack.Screen name="Kabiliyet" component={Kabiliyetler} />
       <Stack.Screen name="Takim" component={Takim} />
+      <Stack.Screen name="Taktik" component={Taktik} />
       <Stack.Screen name="Oyuncular" component={Oyuncular} />
+      <Stack.Screen name="Gecmis" component={Gecmis} />
       <Stack.Screen name="OyuncuBul" component={OyuncuBul} />
       <Stack.Screen name="OyuncuDetay" component={OyuncuDetay} />
       <Stack.Screen

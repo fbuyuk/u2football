@@ -7,24 +7,78 @@ import {
   ScrollView,
 } from "react-native";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
+import { useAuth, apiUrl } from "../../contexts/AuthContext";
+import axios from "axios";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function OyuncuBul({ navigation }) {
+export default function OyuncuBul({ navigation, route }) {
+  const { token, tdp, bank } = useAuth();
+  const [player, setPlayer] = useState(null);
+  const { playerId } = route.params;
+
+  useEffect(() => {
+    axios
+      .get(apiUrl + "/player", {
+        params: {
+          token: token,
+          playerId: playerId,
+        },
+      })
+      .then(async ({ data }) => {
+        if (data.status) {
+          console.log(data.player);
+          setPlayer(data.player);
+        } else {
+          alert(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  function takimdanGonder() {
+    axios
+      .delete(apiUrl + "/players", {
+        params: {
+          token: token,
+          playerId: playerId,
+        },
+      })
+      .then(async ({ data }) => {
+        if (data.status) {
+          navigation.navigate("Root");
+        } else {
+          alert(data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "#28616b" }}>
       <View style={styles.container}>
-        <View style={styles.card}>
+        <View style={[styles.card, { paddingHorizontal: 10 }]}>
           <View style={{ alignItems: "center" }}>
-            <Text style={{ fontWeight: "bold", fontSize: 26 }}>Arda Güler</Text>
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 26,
+              }}
+            >
+              {player?.full_name}
+            </Text>
             <Text style={{ color: "darkred", fontWeight: "900", fontSize: 60 }}>
-              26
+              {player?.yas}
             </Text>
           </View>
           <View>
             <Image
               resizeMode={"contain"}
-              style={{ width: 160, height: 200 }}
+              style={{ width: 100, height: 200 }}
               source={require("../../../assets/images/player1.png")}
             />
           </View>
@@ -39,14 +93,24 @@ export default function OyuncuBul({ navigation }) {
             Bireysel Antrenman Yap
           </Text>
         </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.card, { backgroundColor: "red" }]}
+          onPress={() => {
+            takimdanGonder();
+          }}
+        >
+          <Text style={{ fontWeight: "bold", color: "white" }}>
+            Takımdan Gönder
+          </Text>
+        </TouchableOpacity>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Goller: </Text>
-          <Text>0</Text>
+          <Text>{player?.goller}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Kartlar: </Text>
           <View style={{ flexDirection: "row" }}>
-            <Text>0x</Text>
+            <Text>{player?.sari_kart}x</Text>
             <Text
               style={{
                 backgroundColor: "yellow",
@@ -55,7 +119,7 @@ export default function OyuncuBul({ navigation }) {
                 marginHorizontal: 4,
               }}
             ></Text>
-            <Text>0x</Text>
+            <Text>{player?.kirmizi_kart}x</Text>
             <Text
               style={{
                 backgroundColor: "red",
@@ -79,7 +143,7 @@ export default function OyuncuBul({ navigation }) {
             >
               H
             </Text>
-            <Text>47</Text>
+            <Text>{player?.H}</Text>
             <Text
               style={{
                 backgroundColor: "blue",
@@ -90,7 +154,7 @@ export default function OyuncuBul({ navigation }) {
             >
               O
             </Text>
-            <Text>59</Text>
+            <Text>{player?.O}</Text>
             <Text
               style={{
                 backgroundColor: "green",
@@ -101,7 +165,7 @@ export default function OyuncuBul({ navigation }) {
             >
               D
             </Text>
-            <Text>56</Text>
+            <Text>{player?.D}</Text>
             <Text
               style={{
                 backgroundColor: "orange",
@@ -112,44 +176,44 @@ export default function OyuncuBul({ navigation }) {
             >
               K
             </Text>
-            <Text>43</Text>
+            <Text>{player?.K}</Text>
           </View>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Pozisyon: </Text>
-          <Text>Orta Saha</Text>
+          <Text>{player?.pozisyon}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Koşu: </Text>
-          <Text>64</Text>
+          <Text>{player?.kosu}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Refleksler: </Text>
-          <Text>61</Text>
+          <Text>{player?.refleksler}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Top Kontrolü: </Text>
-          <Text>76</Text>
+          <Text>{player?.top_kontrolu}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Gol Yollarında Etkinlik: </Text>
-          <Text>56</Text>
+          <Text>{player?.gol_yollarinda_etkinlik}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>İkili Mücadele: </Text>
-          <Text>58</Text>
+          <Text>{player?.ikili_mucadele}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Kondisyon: </Text>
-          <Text>54</Text>
+          <Text>{player?.kondisyon}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Güncel Durum: </Text>
-          <Text>Sağlıklı</Text>
+          <Text>{player?.durum}</Text>
         </View>
         <View style={[styles.card, styles.ability]}>
           <Text style={{ fontWeight: "bold" }}>Antrenman Puanı: </Text>
-          <Text>54</Text>
+          <Text>{player?.antrenman_puani}</Text>
         </View>
       </View>
     </ScrollView>

@@ -10,12 +10,42 @@ import Dropdown from "../../components/Dropdown";
 import { AntDesign, FontAwesome } from "@expo/vector-icons";
 
 import { useState } from "react";
+import axios from "axios";
+import { apiUrl, useAuth } from "../../contexts/AuthContext";
 
 export default function OyuncuBul({ navigation }) {
-  const [oyuncuBul, setOyuncuBul] = useState(false);
+  const { token, tdp, bank } = useAuth();
+  const [pozisyon, setPozisyon] = useState(null);
+  const [profesyonellik, setProfesyonellik] = useState(null);
+  const [player, setPlayer] = useState(null);
+  const [costMoney, setCostMoney] = useState(0);
+  const [costTDP, setCostTDP] = useState(0);
 
   const oyuncuArastir = () => {
-    setOyuncuBul(true);
+    console.log(pozisyon, profesyonellik);
+    if (pozisyon && profesyonellik) {
+      axios
+        .get(apiUrl + "/new_player", {
+          params: {
+            token: token,
+            pozisyon: pozisyon,
+            profesyonellik: profesyonellik,
+          },
+        })
+        .then(async ({ data }) => {
+          if (data.status) {
+            console.log(data.player);
+            setPlayer(data.player);
+          } else {
+            alert(data.msg);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert("Lütfen tüm alanları doldurunuz ve tekrar deneyiniz!");
+    }
   };
 
   return (
@@ -57,12 +87,22 @@ export default function OyuncuBul({ navigation }) {
           placeholder={"Profesyonellik seçin"}
           label={"İstenilen Profesonellik"}
           data={[
-            { label: "Genç Yetenek(9)", value: "1" },
-            { label: "Amatör(5)", value: "2" },
-            { label: "Profesyonel(11)", value: "3" },
+            { label: "Genç Yetenek(20)", value: "1" },
+            { label: "Amatör(10)", value: "2" },
+            { label: "Profesyonel(16)", value: "3" },
           ]}
           onChange={(item) => {
-            console.log(item);
+            if (item.value == 1) {
+              setCostMoney(60000);
+              setCostTDP(20);
+            } else if (item.value == 2) {
+              setCostMoney(1000);
+              setCostTDP(10);
+            } else {
+              setCostMoney(100000);
+              setCostTDP(16);
+            }
+            setProfesyonellik(item.value);
           }}
         />
         <Dropdown
@@ -76,6 +116,7 @@ export default function OyuncuBul({ navigation }) {
           ]}
           onChange={(item) => {
             console.log(item);
+            setPozisyon(item.label);
           }}
         />
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
@@ -87,7 +128,7 @@ export default function OyuncuBul({ navigation }) {
             }}
           >
             <FontAwesome name="money" size={24} color="white" />
-            <Text style={{ color: "white", marginLeft: 10 }}>100</Text>
+            <Text style={{ color: "white", marginLeft: 10 }}>{costMoney}</Text>
           </View>
           <View
             style={{
@@ -97,7 +138,7 @@ export default function OyuncuBul({ navigation }) {
             }}
           >
             <FontAwesome name="user-o" size={24} color="white" />
-            <Text style={{ color: "white", marginLeft: 10 }}>9</Text>
+            <Text style={{ color: "white", marginLeft: 10 }}>{costTDP}</Text>
           </View>
         </View>
         <TouchableOpacity
@@ -108,7 +149,7 @@ export default function OyuncuBul({ navigation }) {
         >
           <Text style={styles.menuButtonTitle}>Oyuncu Bul</Text>
         </TouchableOpacity>
-        {oyuncuBul ? (
+        {player ? (
           <TouchableOpacity
             style={{
               backgroundColor: "black",
@@ -118,7 +159,9 @@ export default function OyuncuBul({ navigation }) {
               alignItems: "center",
               marginTop: 26,
             }}
-            onPress={() => navigation.navigate("OyuncuDetay")}
+            onPress={() =>
+              navigation.navigate("OyuncuDetay", { playerId: player?.id })
+            }
           >
             <Text style={{ color: "white" }}>
               Takımınızın yeni oyuncusu sizden merhaba bekliyor!
@@ -131,7 +174,7 @@ export default function OyuncuBul({ navigation }) {
                 textDecorationLine: "underline",
               }}
             >
-              Arda Güler
+              {player?.full_name}
             </Text>
           </TouchableOpacity>
         ) : (

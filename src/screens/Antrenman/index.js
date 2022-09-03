@@ -23,7 +23,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/21.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
@@ -31,7 +31,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/4.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
@@ -39,7 +39,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/5.png")}
             />
           </TouchableOpacity>
         </View>
@@ -49,7 +49,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/14.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
@@ -57,7 +57,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/18.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
@@ -65,7 +65,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/15.png")}
             />
           </TouchableOpacity>
         </View>
@@ -75,15 +75,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
-            <Text style={styles.headTitle}>Hasta Ziyareti</Text>
-            <Image
-              resizeMode={"contain"}
-              style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/11.png")}
             />
           </TouchableOpacity>
           <TouchableOpacity onPress={antrenmanYap} style={styles.menuButton}>
@@ -91,7 +83,7 @@ const Antrenman = ({ route, navigation }) => {
             <Image
               resizeMode={"contain"}
               style={{ width: "100%", height: 80 }}
-              source={require("../../../assets/images/anrenman.jpg")}
+              source={require("../../../assets/images/icons/22.png")}
             />
           </TouchableOpacity>
         </View>
@@ -114,6 +106,7 @@ const styles = StyleSheet.create({
   headTitle: {
     color: "white",
     fontWeight: "bold",
+    marginBottom: 8,
   },
   menuButton: {
     alignItems: "center",
